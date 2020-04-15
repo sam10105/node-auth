@@ -1,0 +1,10 @@
+{
+  "name": "node-auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "yarn --cwd api dev"
+  },
+  "author": "Sam Kasyoki <samkasyoki@gmail.com>",
+  "license": "MIT"
+}
