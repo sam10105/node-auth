@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      MONGO_INITDB_DATABASE: auth
+      MONGO_USERNAME: admin
+      MONGO_PASSWORD: secret
+    volumes:
+      - mongo_db_data:/data/db
+      - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
+
+  cache:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    command: ['--requirepass "secret"']
+
+  node:
+    image: node:alpine
+    depends_on:
+      - db
+      - cache
+    volumes:
+      - ./:/usr/src/node-auth
+    ports:
+      - "3000:3000"
+    working_dir: /usr/src/node-auth/
+    command: yarn dev
+
+volumes:
+  mongo_db_data:
