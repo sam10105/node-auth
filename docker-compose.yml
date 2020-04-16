@@ -3,8 +3,6 @@ version: "3"
 services:
   db:
     image: mongo
-    ports:
-      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: secret
@@ -17,8 +15,6 @@ services:
 
   cache:
     image: redis:alpine
-    ports:
-      - "6379:6379"
     command: ['--requirepass "secret"']
 
   node:
