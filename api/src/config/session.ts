@@ -4,7 +4,7 @@ import { IN_PROD } from "./app";
 
 const HALF_HOUR = 1000 * 60 * 30;
 
-const {
+export const {
   SESSION_SECRET = "this is our little secret.😉",
   SESSION_NAME = "$id",
   SESSION_IDLE_TIMEOUT = HALF_HOUR,

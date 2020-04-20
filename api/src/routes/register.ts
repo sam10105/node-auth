@@ -8,7 +8,7 @@ import { BadRequest } from "../errors";
 const router = Router();
 
 router.post(
-  "/",
+  "/register",
   guest,
   catchAsync(async (req, res) => {
     await validate(registrationSchema, req.body);
@@ -25,7 +25,7 @@ router.post(
 
     logIn(req, user.id);
 
-    res.json({ register: "OK" });
+    res.json({ message: "OK" });
   })
 );
 
