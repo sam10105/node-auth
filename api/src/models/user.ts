@@ -30,4 +30,9 @@ userSchema.methods.matchesPassword = function (password: string) {
   return compare(password, this.password);
 };
 
+// Hiding document fields
+userSchema.set("toJSON", {
+  transform: (_, { __v, password, ...rest }) => rest,
+});
+
 export const User = model<UserDocument>("User", userSchema);

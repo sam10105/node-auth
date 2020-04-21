@@ -2,7 +2,7 @@ import express from "express";
 import session, { Store } from "express-session";
 
 import { SESSION_OPTIONS } from "./config";
-import { register, login } from "./routes";
+import { register, login, home } from "./routes";
 import { notFound, serverError } from "./middleware";
 
 export const createApp = (store: Store) => {
@@ -13,6 +13,7 @@ export const createApp = (store: Store) => {
   app.use(express.json());
 
   // Routes
+  app.use(home);
   app.use(register);
   app.use(login);
 
